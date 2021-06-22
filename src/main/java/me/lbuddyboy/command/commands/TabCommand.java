@@ -32,6 +32,16 @@ public class TabCommand extends LCommand {
 			return false;
 		}
 
+		if (isLess(args, 1)) {
+			sendMsg(sender, "&c/" + label + " <player>");
+			return true;
+		}
+
+		if (isMore(args, 1)) {
+			sendMsg(sender, "&c/" + label + " <player>");
+			return true;
+		}
+
 		if (isNullPlayer(args[0])) {
 			sendMsg(sender, "&cCouldn't detect that player online. Weirdddddd");
 			return true;

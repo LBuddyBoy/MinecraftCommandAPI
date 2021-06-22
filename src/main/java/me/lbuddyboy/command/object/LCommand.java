@@ -91,6 +91,22 @@ public abstract class LCommand implements CommandExecutor, TabCompleter {
 		return Bukkit.getPlayer(arg) == null;
 	}
 
+	public boolean isLess(String[] args, int index) {
+		return args.length < index;
+	}
+
+	public boolean isMore(String[] args, int index) {
+		return args.length > index;
+	}
+
+	public boolean isLessOrEqual(String[] args, int index) {
+		return args.length <= index;
+	}
+
+	public boolean isMoreOrEqual(String[] args, int index) {
+		return args.length >= index;
+	}
+
 	/*
 	  Make it easier to just send a message to someone that is also colored :D
 	 */
