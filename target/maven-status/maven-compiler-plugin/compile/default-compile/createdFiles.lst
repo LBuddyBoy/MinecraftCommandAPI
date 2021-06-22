@@ -1,0 +1,6 @@
+me\lbuddyboy\command\utils\ClassUtils.class
+me\lbuddyboy\command\CommandHandler.class
+me\lbuddyboy\command\commands\TabCommand.class
+me\lbuddyboy\command\object\LCommand.class
+me\lbuddyboy\command\commands\ExampleCommand.class
+me\lbuddyboy\command\Main.class

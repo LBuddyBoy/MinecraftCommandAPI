@@ -1,0 +1,10 @@
+name: CommandAPI
+main: me.lbuddyboy.command.Main
+version: 0.1
+
+commands:
+  tab:
+  example:
+    aliases:
+      - example1
+      - example2
