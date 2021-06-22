@@ -43,6 +43,7 @@ public class ExampleCommand extends LCommand {
 		if (isWithinArgs(args, 1)) {
 			if (containsChar(args[0], "clients")) {
 				sendMsg(sender, getNamesOfClients());
+				return true;
 			}
 			if (containsChar(args[0], "literal")) {
 				sendMsg(sender, "&aThis is very literal lolololol");
