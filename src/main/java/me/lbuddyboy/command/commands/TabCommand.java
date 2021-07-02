@@ -26,32 +26,37 @@ public class TabCommand extends LCommand {
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+	public boolean async() {
+		return false;
+	}
+
+	@Override
+	public void run(CommandSender sender, Command command, String label, String[] args) {
 		if (!isPlayer(sender)) {
 			sendMsg(sender, getNotConsoleMsg());
-			return false;
+			return;
 		}
 
 		if (isLess(args, 1)) {
 			sendMsg(sender, "&c/" + label + " <player>");
-			return true;
+			return;
 		}
 
 		if (isMore(args, 1)) {
 			sendMsg(sender, "&c/" + label + " <player>");
-			return true;
+			return;
 		}
 
 		if (isNullPlayer(args[0])) {
 			sendMsg(sender, "&cCouldn't detect that player online. Weirdddddd");
-			return true;
+			return;
 		}
 		Player player = returnPlayer(args[0]);
 
 		sendMsg(player, "&aHehe " + sender.getName() + " messaged youuuuu.");
 		sendMsg(sender, "&aHehe you messaged " + player.getName() + ".");
 
-		return false;
+		return;
 	}
 
 	@Override

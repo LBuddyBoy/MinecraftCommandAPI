@@ -4,14 +4,12 @@ import lombok.Getter;
 import me.lbuddyboy.command.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.PluginCommand;
-import org.bukkit.command.TabCompleter;
+import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author LBuddyBoy (lbuddyboy.me)
@@ -30,6 +28,10 @@ public abstract class LCommand implements CommandExecutor, TabCompleter {
 	public abstract String name();
 
 	public abstract List<String> aliases();
+
+	public abstract boolean async();
+
+	public abstract void run(CommandSender sender, Command command, String label, String[] args);
 
 	public LCommand() {
 		PluginCommand command = Main.getInstance().getCommand(name());
@@ -128,4 +130,15 @@ public abstract class LCommand implements CommandExecutor, TabCompleter {
 		return Collections.emptyList();
 	}
 
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if (async()) {
+			CompletableFuture.runAsync(() -> {
+				run(sender, command, label, args);
+			});
+		} else {
+			run(sender, command, label, args);
+		}
+		return false;
+	}
 }

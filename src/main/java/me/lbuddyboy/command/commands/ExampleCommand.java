@@ -28,33 +28,35 @@ public class ExampleCommand extends LCommand {
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+	public boolean async() {
+		return true;
+	}
 
+	@Override
+	public void run(CommandSender sender, Command command, String label, String[] args) {
 		if (!hasPermission(sender)) {
 			sendMsg(sender, getNoPermMsg());
-			return true;
+			return;
 		}
 
 		if (!isPlayer(sender)) {
 			sendMsg(sender, "&cNot a player dumbo");
-			return false;
+			return;
 		}
 
 		if (isWithinArgs(args, 1)) {
 			if (containsChar(args[0], "clients")) {
 				sendMsg(sender, getNamesOfClients());
-				return true;
+				return;
 			}
 			if (containsChar(args[0], "literal")) {
 				sendMsg(sender, "&aThis is very literal lolololol");
-				return true;
+				return;
 			}
 			sendMsg(sender, "&aDetected another argument successfully!");
 		} else {
 			sendMsg(sender, "&c/" + label + " <anything here || literal>");
 		}
-
-		return false;
 	}
 
 	@Override
